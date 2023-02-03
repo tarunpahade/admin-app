@@ -1,0 +1,116 @@
+.orders {
+    overflow-y: scroll;
+    height: 18em;
+}
+body {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+.topSellers {
+    height: 554.953px;
+}
+
+.menu-btn span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border-radius: 1px;
+    opacity: 1;
+    background: #fff;
+    left: 10px;
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+}
+
+@media only screen and (max-width: 991px) {
+    .header-nav {
+        overflow-y: scroll;
+        position: absolute;
+        width: 313px;
+        left: -280px;
+        height: 100vh !important;
+        -webkit-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        transition: all 0.5s;
+        top: 0;
+        background-color: #fff;
+        margin: 0;
+        z-index: 99;
+    }
+}
+
+.collapsable {
+    position: absolute;
+    width: 313px;
+    left: 9px;
+    top: 0;
+    background-color: #fff;
+    margin: 0;
+    z-index: 99;
+    height: 100vh !important;
+    overflow-y: scroll;
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.side {
+    padding: 30px 0;
+    position: fixed;
+    height: calc(100% - 5rem);
+    width: 300px;
+    z-index: 99999;
+    background: #fff;
+    top: 5rem;
+    left: 9px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.spananimate1 {
+    transform: rotate(-45deg) translate(0px);
+}
+
+.spananimate2 {
+    transform: rotate(-45deg) translate(0px);
+}
+.btn{
+ border: 1px solid #23e;
+width: 12em;
+margin: 1em;
+}
+#inp{
+    width: 80%;
+  
+
+
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    border-radius: 4px;
+    color: #000;
+    
+    resize: none;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+.flex{
+    display: flex;
+    justify-content: space-around;
+}
+i{
+    font-size: 1.5em;
+}

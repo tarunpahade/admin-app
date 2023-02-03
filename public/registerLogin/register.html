@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../nav.css">
+</head>
+
+<body>
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12" style="width: 95%;">
+                                <div class="auth-form">
+                                    <div class="text-center mb-3">
+                                        <a href="index.html"><img src="images/logo-full.png" alt=""></a>
+                                    </div>
+                                    <h4 class="text-center mb-4">Sign up your account</h4>
+                                    <form action="/register" method="POST">
+                                        <div class=" form-group">
+                                            <label class="mb-1"><strong>Username</strong></label>
+                                            <input type="text" class="form-control" name="username" id="username"
+                                                name="username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mb-1"><strong>Email</strong></label>
+                                            <input type="email" class="form-control" id="username" name="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="mb-1"><strong>Password</strong></label>
+                                            <input type="password" class="form-control" id="confirmpassword"
+                                                name="password" required>
+                                        </div>
+                                        <div>
+                                            <label for="mb-1"><strong>Confirm password</strong></label>
+                                            <input type="password" id="confirmpassword" class="form-control"
+                                                name="confirmpassword" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="number" class="mb-1">Position </label>
+                                            <select id="position" name="position" class="form-control solid" required>
+                                                <option name="manager">Manager</option>
+                                                <option name="chef">Chef</option>
+                                                <option name="waiter">Waiter</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
+                                        </div>
+                                    </form>
+                                    <div class="new-account mt-3">
+                                        <p>Already have an account? <a class="text-primary" href="/login">Sign in</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="login">Login</a>
+</body>
+
+</html>

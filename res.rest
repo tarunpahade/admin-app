@@ -1,0 +1,15 @@
+GET http://localhost:5000/info
+638f6d489af385b720a98642
+###
+PATCH  http://localhost:5000/upda/
+ 638f6d489af385b720a98642
+Content-Type: application/json
+
+
+
+{
+    "status":"cooked"
+,
+    "table":"6"
+}
+
