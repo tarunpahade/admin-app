@@ -65,7 +65,7 @@ async function getinfo() {
    
     const time=[]
     function handler(e){
-      console.log(lala[0]);
+
       const filterdate=lala[0].filter((y) => y.date ===  e.target.value.slice(-2)) 
     
       var month=getMonthName(e.target.value.slice(5,-3))
@@ -83,12 +83,12 @@ hh=year
 if(hh.length>0){
   
 
-// const todaysdate=document.querySelector('.todaysdate').innerHTML='Date '+e.target.value.slice(-2)
-// topProducts(hh)     
+ 
 
        createCard(hh)
        col2(hh)
        topProducts(hh)
+       categoryWiseSale(hh)
        const hh1=lala[0].filter((y) => y.date ===  e.target.value.slice(-2)) 
        const quantity2=[]
               
