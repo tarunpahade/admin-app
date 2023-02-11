@@ -55,7 +55,7 @@ app.use(session({
 const port = process.env.PORT || 8080;
 
 //socket io
-const server=app.listen(port)
+const server=app.listen(9000)
 
 const io = require("socket.io")(server);
 
