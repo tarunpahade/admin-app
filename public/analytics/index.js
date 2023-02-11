@@ -12,7 +12,7 @@ document.querySelector('.menu-btn').addEventListener('click',()=>{
   // }
   })
 const lala=[]
-  const baseUrl='http://localhost:5000/bill'
+  const baseUrl='/bill'
 
 async function getinfo() {
     const res = await fetch(baseUrl,

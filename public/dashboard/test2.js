@@ -39,7 +39,7 @@ const year=date.getFullYear()
 const month=date.getMonth()
 const full=neewdate+'/'+month+'/'+year
 // const appdata=JSON.parse(localStorage.getItem('kot')) || []
-const baseUrl='http://localhost:5000/bill'
+const baseUrl='/bill'
 
 async function getinfo() {
   const res = await fetch(baseUrl,
@@ -475,7 +475,7 @@ function createChart(foodid,count,location,type,label){
 
    //category wise sales
       async function categoryWiseSale(data) {
-        const baseUrl='http://localhost:5000/send'
+        const baseUrl='/send'
         const res = await fetch(baseUrl,
           {
             method:'GET',

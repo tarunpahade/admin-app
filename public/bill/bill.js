@@ -25,7 +25,7 @@ const p =document.querySelector('.haha')
 const hoho=[]
 const tables=[ '6','5','7','8','1','2','3','4','9']
 // const appdata=JSON.parse(localStorage.getItem('kot')) || []
-const baseUrl='http://localhost:5000/info'
+const baseUrl='/info'
 
 async function getinfo() {
   const res = await fetch(baseUrl,
@@ -59,7 +59,7 @@ document.querySelector('.torder').style.display='block'
 const kota=document.createElement('button')
 kota.innerHTML='Print Kot'
 kota.addEventListener('click',()=>{
-  const baseUrl='http://localhost:5000/info'
+  const baseUrl='/info'
 getinfo()
 async function getinfo() {
   const res = await fetch(baseUrl,
@@ -239,7 +239,7 @@ number.setAttribute('id', 'PhoneNumber')
 const remove= document.createElement('button') 
 remove.innerHTML='remove'
 remove.addEventListener('click',()=>{
-  post(j,'http://localhost:5000/delete')
+  post(j,'/delete')
 })
 const buttondiv=document.createElement('div')
 buttondiv.classList.add('flex')
@@ -281,7 +281,7 @@ number.setAttribute('id', 'PhoneNumber')
 const remove= document.createElement('button') 
 remove.innerHTML='REMOVE'
 remove.addEventListener('click',()=>{
-  post(j,'http://localhost:5000/delete')
+  post(j,'/delete')
 })
 const buttondiv=document.createElement('div')
 buttondiv.classList.add('flex')
@@ -411,13 +411,13 @@ j.map((Q)=>{
 
 
 //send info to backend
- post(search9,'http://localhost:5000/delete')
+ post(search9,'/delete')
 })
 })
 const kota=document.createElement('button')
 kota.innerHTML='Print Kot'
 kota.addEventListener('click',(e)=>{
-  const baseUrl='http://localhost:5000/info'
+  const baseUrl='/info'
 getinfo()
 async function getinfo() {
   const res = await fetch(baseUrl,
@@ -523,7 +523,7 @@ zoo.push(xc)
 
 
    
-    post(f,'http://localhost:5000/update')
+    post(f,'/update')
 
   
 
@@ -827,10 +827,10 @@ month:month,
     minutes:minutes
      }
    
-const baseUrll='http://localhost:5000/';
+const baseUrll='/';
 post(billData,baseUrll)    
 console.log(billData);  
-const baseUrl='http://localhost:5000/delete'
+const baseUrl='/delete'
 console.log(search9);
 post(search9,baseUrl)
 

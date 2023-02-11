@@ -19,7 +19,7 @@ document.querySelector('.menu-btn').addEventListener('click',()=>{
     })
 
 
-    const baseUrl='http://localhost:5000/user'
+    const baseUrl='/user'
 
 async function getinfo() {
   const res = await fetch(baseUrl,
