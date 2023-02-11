@@ -14,7 +14,7 @@ document.querySelector('.menu-btn').addEventListener('click',()=>{
   
 
 
-const baseUrl='http://localhost:5000/bill'
+const baseUrl='/bill'
 
 async function getinfo() {
   const res = await fetch(baseUrl,
@@ -69,7 +69,7 @@ console.log('null');
             'number':filteredNumbers,
             'msg':message,
            }
-            const url= 'http://localhost:5000/discount'
+            const url= '/discount'
             post(data,url)
         // })
         
@@ -116,7 +116,7 @@ else{
           'number':filteredNumbers,
           'msg':message,
          }
-          const url= 'http://localhost:5000/whatsapp'
+          const url= '/whatsapp'
           post(data,url)
       // })
       

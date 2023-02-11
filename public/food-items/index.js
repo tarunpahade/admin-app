@@ -11,8 +11,8 @@ document.querySelector('.menu-btn').addEventListener('click',()=>{
   })
 
 
-const baseUrl1='http://localhost:5000/send'
-const baseUrll='http://localhost:5000/bill'
+const baseUrl1='/send'
+const baseUrll='/bill'
 var salebase=[]
 
 const database=[]
@@ -161,7 +161,7 @@ if(y.status==='inactive'){
   status.innerHTML="<a class='inactive btn'> Re-activate </a>"
   status.addEventListener('click',()=>{
   
-  const baseUrl='http://localhost:5000/reActivate'
+  const baseUrl='/reActivate'
     post(y,baseUrl)
     location.reload()
   })
@@ -206,7 +206,7 @@ tick.addEventListener('click',(e)=>{
         name:name.innerHTML
     }
 
-    const baseUrl='http://localhost:5000/updatePrice'
+    const baseUrl='/updatePrice'
     // here data might be the problem
        post(z,baseUrl)
 location.reload()
@@ -254,7 +254,7 @@ height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
 </svg>`
 deleteIcon.addEventListener('click',(e)=>{
 console.log(y);
-const baseUrll='http://localhost:5000/delfood'
+const baseUrll='/delfood'
 del(y,baseUrll)
 location.reload()
 

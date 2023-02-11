@@ -297,7 +297,7 @@ const h4=document.createElement('h4')
 
 getinfo()
       async function getinfo() {
-        const baseUrl='http://localhost:5000/send'
+        const baseUrl='/send'
         const res = await fetch(baseUrl,
           {
             method:'GET',

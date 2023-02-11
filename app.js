@@ -51,9 +51,13 @@ app.use(session({
 
 ;
 //socket io
-const server=app.listen(5000)
-const io = require("socket.io")(server);
 
+const port = process.env.PORT || 8080;
+
+//socket io
+const server=app.listen(port)
+
+const io = require("socket.io")(server);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
