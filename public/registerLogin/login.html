@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../nav.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 
 <body>
@@ -104,7 +104,7 @@
                             <div class="col-md-6">
                                 <div class="auth-form">
                                     <h4 class="main-title">Sign in</h4>
-                                    <form action="/login" method="POST">
+                                    <form action="/login" id="noteform" method="POST">
                                         <div class="form-group mb-3 pb-3">
                                             <label class="font-w600">Username</label>
                                             <input type="text" class="form-control solid" placeholder="Enter Username"
@@ -112,16 +112,16 @@
                                         </div>
                                         <div class="form-group mb-3 pb-3">
                                             <label class="font-w600">Password</label>
-                                            <input type="number" class="form-control solid" placeholder="Password"
-                                                id="password" name="password" required>
+                                            <input class="form-control solid" placeholder="Password" id="password"
+                                                name="password" type="password" required>
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox me-1">
                                                     <input type="checkbox" class="custom-control-input"
-                                                        id="basic_checkbox_1">
-                                                    <label class="custom-control-label" for="basic_checkbox_1">Remember
-                                                        me</label>
+                                                        id="basic_checkbox_1" onclick="myfunction()">
+                                                    <label class="custom-control-label" for="basic_checkbox_1">Show
+                                                        Password</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,7 +145,27 @@
             </div>
         </div>
     </div>
-    <a href="register">Register</a>
+    <script>
+        function myfunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        const noteform = document.querySelector('#noteform')
+        const username = document.querySelector('#username')
+        noteform.addEventListener("submit", (e) => {
+            const notesStorage = []
+            e.preventDefault();
+            notesStorage.push({
+                'username': username.value
+            });
+            localStorage.setItem("user", JSON.stringify(notesStorage));
+            noteform.submit()
+        });
+    </script>
 </body>
 
 </html>
