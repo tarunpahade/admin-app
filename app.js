@@ -11,14 +11,6 @@ const bcrypt=require('bcrypt')
 var cors = require('cors')
 const flash=require('express-flash')
 const session=require('express-session')
-// const puppeteer=require('puppeteer')
-
-// async function scrape(url) {
-//   const browser=await puppeteer.launch({headless:false})
-//   const page= await browser.newPage()
-//   await page.goto(url)
-// }
-// scrape("https://web.whatsapp.com")
 
 var app = express();
  const path= require('path');
@@ -27,7 +19,7 @@ var app = express();
 
  
 
-require('dotenv').config
+
 
 app.set('view-engine','ejs')
 app.use(cors())
@@ -61,9 +53,7 @@ io.on('connection', (socket) => {
    
   io.emit('message',data)
 })
-  // socket.on('disconnect', () => {
-  //   console.log('user disconnected');
-  // });
+
 });
 
 //connect
@@ -428,10 +418,7 @@ food.findByIdAndUpdate(id,{price:price,item:name},   function (err, docs) {
 app.post('/delfood',(req,res)=>{
   const { pp }=req.body
   const id=pp._id;
-  // food.findByIdAndUpdate(id,{status:'inactive'}).then((err,book)=>{
-  //   if(err){console.log(err);}else{console.log(err);}
-    
-  // })
+
   food.findByIdAndUpdate(id, { $set: { status: 'inactive' }}, { new: true }, function (err, article) {
     if (err) return handleError(err);
     res.send(article);
@@ -554,6 +541,3 @@ console.log(article);
   });
   
   })
-// app.listen('5000',()=>{
-//   console.log('server up and running');
-// })
