@@ -43,11 +43,7 @@ mongoose.set("strictQuery", false);
 const usersinfo=[]
 
 app.use(flash())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave:false,
-  saveUninitialized:false,
-}))
+
 
 ;
 //socket io
