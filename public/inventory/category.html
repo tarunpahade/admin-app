@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category list</title>
+</head>
+
+<body>
+    <div class="flex">
+        <div class="new-category">
+            <input type="text" id="category" placeholder="name">
+            <input type="text" id="price" placeholder="price">
+            <input type="text" id="quantity" placeholder="quantity">
+            <select id="unit" class="form-control" name="unit">
+                <option id='kg'>kg</option>
+                <option id='gm'>gm</option>
+                <option id='liter'>liter</option>
+                <option id='ml'>ml</option>
+            </select>
+            <button onclick="addCategory()">Submit</button>
+        </div>
+        <table class="grid-container">
+            <tbody>
+                <tr>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="category.js"></script>
+</body>
+
+</html>

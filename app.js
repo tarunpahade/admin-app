@@ -11,14 +11,7 @@ const bcrypt=require('bcrypt')
 var cors = require('cors')
 const flash=require('express-flash')
 const session=require('express-session')
-// const puppeteer=require('puppeteer')
 
-// async function scrape(url) {
-//   const browser=await puppeteer.launch({headless:false})
-//   const page= await browser.newPage()
-//   await page.goto(url)
-// }
-// scrape("https://web.whatsapp.com")
 
 var app = express();
  const path= require('path');
@@ -55,16 +48,6 @@ const server=app.listen(port)
 
 const io = require("socket.io")(server);
 
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  socket.on('chatmessage', data=>{
-   
-  io.emit('message',data)
-})
-  // socket.on('disconnect', () => {
-  //   console.log('user disconnected');
-  // });
-});
 
 //connect
 const db=mongoose.connection
@@ -128,6 +111,17 @@ app.get('/register',(req,res)=>{
   res.sendFile(__dirname+'/public/registerLogin/register.html')
   
 })
+
+app.get('/inventory',(req,res)=>{
+  res.sendFile(__dirname+'/public/inventory/category.html')
+
+})
+app.get('/inventory/reciepe',(req,res)=>{
+  res.sendFile(__dirname+'/public/inventory/reciepe.html')
+
+})
+
+
 app.post('/register',async (req,res)=>{
   const ff =req.body;
 console.log(ff);
@@ -541,6 +535,133 @@ app.get('/analytics',(req,res)=>{
   app.get('/user2', (req, res) => {
     res.sendFile(__dirname + '/public/test2.html');
   });
+  const category=new mongoose.Schema({
+    name:String,
+    price:Number,
+  quantity:Number,
+  unit:String
+    })
+  var categories = mongoose.model('orderedCategory',category,'category')
+  app.post('/category', async(req, res) => {
+    
+    const { pp } =req.body;
+ ;
+    const name=pp.name
+ const price=pp.price
+  const quantity=pp.quantity
+  const unit=pp.unit
+
+    const user= await  categories.findOne({name:name})
+
+  
+   console.log( user === null)
+    if (user==null) {
+      const data=new categories({
+        name,
+        price,
+        quantity,
+        unit
+    })
+     data.save(function (err, book) {
+      if (err) return console.error('fucked up code'+err);
+    });
+    } else {
+      console.log('hii');
+      console.log(user.unit,unit);
+    if (unit===user.unit){
+     
+     
+      var additionprice= Number(price)+ Number(user.price)
+      var additionquantity= Number(quantity)+ Number(user.quantity)
+console.log(additionquantity,Number(user.quantity),Number(quantity));
+  categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity }}, { new: true }, function (err, article) {
+   if(err){
+    console.log(err);
+   }});
+
+    }else if(unit ==='kg' && user.unit === 'gm'){
+      console.log('lol');
+      var additionprice= Number(price)+ Number(user.price)
+      var additionquantity= Number(quantity) *Number(1000)+ Number(user.quantity)
+    
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm' }}, { new: true }, function (err, article) {
+        if(err){
+         console.log(err);
+        }})
+     }else if( unit === 'gm'  &&  user.unit ==='kg'  ){
+     console.log('hohojho');
+      var additionprice= Number(price)+ Number(user.price)
+      var additionquantity= Number(quantity) + Number(user.quantity)*Number(1000)  
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm' }}, { new: true }, function (err, article) {
+        if(err){
+         console.log(err);
+        }})
+     }else if( unit ==='liter' && user.unit === 'ml' ){
+      var additionprice= Number(price)+ Number(user.price)
+      var additionquantity= Number(quantity) *Number(1000)+ Number(user.quantity)
+    
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml' }}, { new: true }, function (err, article) {
+        if(err){
+         console.log(err);
+        }})
+     }else if(user.unit ==='liter' && unit === 'ml' ){
+      var additionprice= Number(price)+ Number(user.price)
+      var additionquantity= Number(quantity) + Number(user.quantity)*Number(1000)  
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml' }}, { new: true }, function (err, article) {
+        if(err){
+         console.log(err);
+        }})
+     }
+  
+  
+  
+  }
+
+
+
+ 
+  });
+  const ingredient=new mongoose.Schema({
+    rawMaterial:String,
+    menuItem:String,
+  quantity:Number,
+  unit:String
+    })
+  var ingredients = mongoose.model('orderedRecipe',ingredient,'recipe')
+  app.post('/ingredients',(req,res)=>{
+    const { pp } =req.body;
+    console.log(pp);
+    const menuItem=pp.menuItem
+   const rawMaterial= pp.rawMaterial
+     const quantity=pp.quantity
+     const unit=pp.unit
+
+     const data=new ingredients({
+   
+      rawMaterial,
+      menuItem,
+      quantity,
+      unit
+  })
+   data.save(function (err, book) {
+    if (err) return console.error('fucked up code'+err);
+    else{
+      console.log(book);
+    }
+  });
+
+  })
+
+  
+app.get('/categories',(req,res)=>{
+  categories.find({},(err,user)=>{
+    if(err){
+      console.log(err);
+    }
+    res.send(user);
+  })
+})
+
 
   app.get('/logout',(req,res)=>{
     
