@@ -197,13 +197,14 @@ height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon"><path d="M
 tick.addEventListener('click',(e)=>{
 
     price.contentEditable='false';
-    name.contentEditable='false'
+    
     console.log(price.innerText);
     console.log(y._id);
     const z={
         price:price.innerText,
         _id:y._id,
-        name:name.innerHTML
+        name:name.innerHTML,
+     
     }
 
     const baseUrl='/updatePrice'

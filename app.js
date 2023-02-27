@@ -18,6 +18,7 @@ var app = express();
 
 
 
+
  
 
 require('dotenv').config
@@ -41,7 +42,7 @@ app.use(flash())
 ;
 //socket io
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 9000;
 
 //socket io
 const server=app.listen(port)
@@ -112,14 +113,17 @@ app.get('/register',(req,res)=>{
   
 })
 
-app.get('/inventory',(req,res)=>{
-  res.sendFile(__dirname+'/public/inventory/category.html')
+app.get('/inventory/stock',(req,res)=>{
+  res.sendFile(__dirname+'/public/inventory/stock/category.html')
 
 })
 app.get('/inventory/reciepe',(req,res)=>{
-  res.sendFile(__dirname+'/public/inventory/reciepe.html')
+  res.sendFile(__dirname+'/public/inventory/reciepe/reciepe.html')
 
 })
+
+
+
 
 
 app.post('/register',async (req,res)=>{
@@ -224,16 +228,7 @@ app.get('/info',(req,res)=>{
 //sends data to dashboard
 app.get('/bill',(req,res)=>{
   console.log(usersinfo);
-//   if(usersinfo.length===0){
-//    console.log('haha');
-  
-//     }else if(usersinfo.length>0){
 
-
-// console.log(usersinfo[0].username+'username');
-
-
-// if(usersinfo[0].username==='admin'){
 console.log('haha');
   bill.find({},(err,user)=>{
    
@@ -262,7 +257,7 @@ const table=pp.table
 const orderedItems=pp.orders[0]
 
 const year=pp.year
-const week=pp.week
+
 const todayDate=pp.date
 const number=pp.number
 const status=pp.status
@@ -309,6 +304,8 @@ order.deleteOne({_id:pp._id}).then((err,book)=>{
 })
 })
 
+
+
 //after the bill is printed
 app.post('/update',(req,res)=>{
   db.collection('orderedFood')
@@ -342,9 +339,6 @@ order.findByIdAndUpdate(id,{status:'cooked'},   function (err, docs) {
   }
 
 })
-// { "acknowledged" :true, "matchedCount" : 1, "modifiedCount" : 1 }
-
-
 
 })
 
@@ -417,15 +411,14 @@ food.findByIdAndUpdate(id,{price:price,item:name},   function (err, docs) {
       console.log("Updated User : ", docs.type);
   }
 })
+
+
 })
 //delete item from menu
 app.post('/delfood',(req,res)=>{
   const { pp }=req.body
   const id=pp._id;
-  // food.findByIdAndUpdate(id,{status:'inactive'}).then((err,book)=>{
-  //   if(err){console.log(err);}else{console.log(err);}
-    
-  // })
+
   food.findByIdAndUpdate(id, { $set: { status: 'inactive' }}, { new: true }, function (err, article) {
     if (err) return handleError(err);
     res.send(article);
@@ -539,9 +532,25 @@ app.get('/analytics',(req,res)=>{
     name:String,
     price:Number,
   quantity:Number,
-  unit:String
+  unit:String,
+costPerUnit:Number,
+ 
     })
   var categories = mongoose.model('orderedCategory',category,'category')
+
+  const purchase=new mongoose.Schema({
+    name:String,
+    price:Number,
+  quantity:Number,
+  unit:String,
+date:String,
+day:String,
+month:String,
+year:String
+ 
+    })
+  var expense = mongoose.model('orderedExpense',purchase,'expense')
+
   app.post('/category', async(req, res) => {
     
     const { pp } =req.body;
@@ -555,18 +564,51 @@ app.get('/analytics',(req,res)=>{
 
   
    console.log( user === null)
+   //if there is no previous raw material alredy in database
     if (user==null) {
+if (unit==='kg'){
+  const costPerUnit=Math.round(quantity*1000/price *1000)/1000
+  const data=new categories({
+    name,
+    price,
+    quantity:quantity*1000,
+    unit:'gm',
+    costPerUnit
+})
+ data.save(function (err, book) {
+  if (err) return console.error('fucked up code'+err);
+});
+}else if(unit==='liter'){
+  const costPerUnit=Math.round(quantity*1000/price *1000)/1000
+  const data=new categories({
+    name,
+    price,
+    quantity:quantity*1000,
+    unit:'ml',
+    costPerUnit
+})
+ data.save(function (err, book) {
+  if (err) return console.error('fucked up code'+err);
+});
+
+}else{
+
+
+  const costPerUnit=Math.round(quantity/price *1000)/1000
+
+
       const data=new categories({
         name,
         price,
         quantity,
-        unit
+        unit,
+        costPerUnit
     })
      data.save(function (err, book) {
       if (err) return console.error('fucked up code'+err);
     });
-    } else {
-      console.log('hii');
+    } }else {
+     
       console.log(user.unit,unit);
     if (unit===user.unit){
      
@@ -574,7 +616,7 @@ app.get('/analytics',(req,res)=>{
       var additionprice= Number(price)+ Number(user.price)
       var additionquantity= Number(quantity)+ Number(user.quantity)
 console.log(additionquantity,Number(user.quantity),Number(quantity));
-  categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity }}, { new: true }, function (err, article) {
+  categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,costPerUnit:additionquantity/additionprice }}, { new: true }, function (err, article) {
    if(err){
     console.log(err);
    }});
@@ -584,7 +626,7 @@ console.log(additionquantity,Number(user.quantity),Number(quantity));
       var additionprice= Number(price)+ Number(user.price)
       var additionquantity= Number(quantity) *Number(1000)+ Number(user.quantity)
     
-      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm' }}, { new: true }, function (err, article) {
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm',costPerUnit:additionquantity/additionprice }}, { new: true }, function (err, article) {
         if(err){
          console.log(err);
         }})
@@ -592,7 +634,7 @@ console.log(additionquantity,Number(user.quantity),Number(quantity));
      console.log('hohojho');
       var additionprice= Number(price)+ Number(user.price)
       var additionquantity= Number(quantity) + Number(user.quantity)*Number(1000)  
-      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm' }}, { new: true }, function (err, article) {
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'gm' ,costPerUnit:additionquantity/additionprice}}, { new: true }, function (err, article) {
         if(err){
          console.log(err);
         }})
@@ -600,14 +642,14 @@ console.log(additionquantity,Number(user.quantity),Number(quantity));
       var additionprice= Number(price)+ Number(user.price)
       var additionquantity= Number(quantity) *Number(1000)+ Number(user.quantity)
     
-      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml' }}, { new: true }, function (err, article) {
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml',costPerUnit:additionquantity/additionprice }}, { new: true }, function (err, article) {
         if(err){
          console.log(err);
         }})
      }else if(user.unit ==='liter' && unit === 'ml' ){
       var additionprice= Number(price)+ Number(user.price)
       var additionquantity= Number(quantity) + Number(user.quantity)*Number(1000)  
-      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml' }}, { new: true }, function (err, article) {
+      categories.findByIdAndUpdate(user._id, { $set: {price:additionprice,quantity:additionquantity,unit:'ml',costPerUnit:additionquantity/additionprice }}, { new: true }, function (err, article) {
         if(err){
          console.log(err);
         }})
@@ -616,11 +658,38 @@ console.log(additionquantity,Number(user.quantity),Number(quantity));
   
   
   }
+const dateDate=new Date
+const date=dateDate.getDate()
+const month=dateDate.getMonth()
+const month2 = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const month3=month2[month]
+const year=dateDate.getFullYear()
+  const data=new expense({
+    name,
+    price,
+    quantity,
+    unit,
+    date,
+month:month3,
+year
+})
+ data.save(function (err, book) {
+  if (err) return console.error('fucked up code'+err);
+  console.log('success')
+});
 
-
-
- 
   });
+  app.get('/expense',(req,res)=>{
+    expense.find({},(err,user)=>{
+       
+      if(err){
+           console.log(err);
+         }
+         res.send(user);
+       })
+  })
+
+
   const ingredient=new mongoose.Schema({
     rawMaterial:String,
     menuItem:String,
@@ -628,6 +697,17 @@ console.log(additionquantity,Number(user.quantity),Number(quantity));
   unit:String
     })
   var ingredients = mongoose.model('orderedRecipe',ingredient,'recipe')
+  app.get('/reciepe',(req,res)=>{
+    ingredients.find({},(err,user)=>{
+       
+      if(err){
+           console.log(err);
+         }
+         res.send(user);
+       })
+  })
+  
+  
   app.post('/ingredients',(req,res)=>{
     const { pp } =req.body;
     console.log(pp);
@@ -666,14 +746,7 @@ app.get('/categories',(req,res)=>{
   app.get('/logout',(req,res)=>{
     
     console.log(usersinfo);
-  registeredUser.findByIdAndUpdate(usersinfo[0]._id, { $set: { status: 'offline' }}, { new: true }, function (err, article) {
-    if (err) { console.log(err)}else{
-console.log(article);
-    
-    console.log('hii');
-    res.redirect('/login')  }
-  });
-  
+  registeredUser
   })
 // app.listen('5000',()=>{
 //   console.log('server up and running');

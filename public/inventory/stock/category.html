@@ -4,83 +4,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <title>Category list</title>
+    <link rel="stylesheet" href="nav.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../nav.css">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto');
-
         body {
+            box-sizing: border-box;
             margin: 0;
-            padding: 0;
-            font-family: poppins;
+            overflow-x: hidden;
+            object-fit: contain;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            font-family: 'poppins', sans-serif;
+            background: #ececec;
         }
 
-        .content-wrappr {
-            margin-top: 2em;
+        td,
+        th {
+            border: 1px solid #2f4cdd;
         }
 
-        li a {
-            color: #2f4cdd;
-            font-family: 'Poppins';
-            font-size: 21px;
+        .new-category {
+            background-color: #fff;
+            display: flex;
+            align-content: center;
+            flex-direction: column;
+            padding: 20px;
+            display: grid;
+            grid-auto-columns: auto auto;
+            grid-template-columns: auto auto;
         }
 
+        tr,
+        th,
         td {
-            font-weight: 500;
-            font-size: 18px;
-            letter-spacing: 0.4px;
+            border: 1px solid #2f4cdd;
+            color: #2f4cdd;
+            padding: 10px;
         }
 
-        .side {
-            padding: 30px 0;
-            position: fixed;
-            height: calc(100% - 5rem);
-            width: 300px;
-            z-index: 99999;
-            background: #fff;
-            top: 5rem;
-            left: 9px;
-            overflow-y: auto;
-            -webkit-transition: all 0.5s;
-            -ms-transition: all 0.5s;
-            transition: all 0.5s;
+        .form-group {
+            /* margin-bottom: 1rem; */
+            width: 80%;
         }
 
-        .menu-btn span {
-            display: block;
-            position: absolute;
-            height: 2px;
+        button {
+            appearance: button;
+            background-color: #000;
+            background-image: none;
+            border: 1px solid #000;
+            border-radius: 4px;
+            box-shadow: #fff 4px 4px 0 0, #000 4px 4px 0 1px;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: ITCAvantGardeStd-Bk, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            margin: 0 5px 10px 0;
+            overflow: visible;
+            padding: 5px 23px;
+            text-align: center;
+            text-transform: none;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        table {
             width: 100%;
-            border-radius: 1px;
-            opacity: 1;
-            background: #fff;
-            left: 10px;
-            -webkit-transition: .25s ease-in-out;
-            -moz-transition: .25s ease-in-out;
-            -o-transition: .25s ease-in-out;
-            transition: .25s ease-in-out;
         }
 
-        .active {
-            color: #2bc155;
-            background: #fff;
-            border: #2bc155 1px solid;
-            /* padding: 0.625rem 1rem;
-            border-radius: 30px !important; */
-        }
-
-        .inactive {
-            border: #f72b50 1px solid;
-            color: #f72b50;
-            background: #fff;
-            border-color: #f72b50;
+        button {
+            width: fit-content;
+            margin: 1em;
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -401,81 +405,44 @@
         </div>
         <div class="menu-close"></div>
     </div>
-    <div class="content-wrappr">
-        <div class="container-fluid">
-            <div class="form-head dashboard-head d-md-flex d-block mb-5 align-items-start">
-                <h2 class="dashboard-title me-auto">Food Items<a href="./add.html" data-toggle="modal"
-                        data-target="#AddNewCustomer"
-                        class="btn btn-success btn-rounded ms-4 text-white d-inline-block">Add New</a></h2>
-                <div class="input-group search-area">
-                    <input type="text" class="form-control" placeholder="Search here..." id="search">
-                    <span class="input-group-text"><a href="javascript:void(0)"><i
-                                class="flaticon-381-search-2"></i></a></span>
-                </div>
-                <select id="monthToDate" onchange="chang()" style="
-                margin-left: 1em;
-            " value="month">
-                    <option value="1" id="all">All</option>
-                    <option value="1" id="saojiSpecial">Saroj Special</option>
-                    <option value="2" id="special">Special</option>
-                    <option value="2" id="starters">Staters</option>
-                    <option value="4" id='vegMainCorse'>Veg Main Course</option>
-                    <option value="5" id="paneerMainCourse">Paneer Main Course</option>
-                    <option value="6" id="kalamMsala">kala Masala</option>
-                    <option value="7" id="biryani">Biryani</option>
-                    <option value="8" id="chinese">Chinese</option>
-                    <option value="9" id="roti">Roti</option>
-                    <option value="10" id="rice">Rice</option>
-                    <option value="11" id="deserts">Deserts</option>
-                </select> </a>
+    <div class="flex">
+        <!--      <form class="new-category">
+            <div class="form-group mb-3">
+                <label class="font-w600">Category Name</label>
+                <input type="text" type="text" class="form-control solid" id="category" placeholder="name">
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="table-responsive">
-                        <div id="example5_wrapper" class="dataTables_wrapper no-footer">
-                            <table id="example5" class="display mb-4 defaultTable dataTablesCard dataTable no-footer"
-                                style="width: 100%;" role="grid" aria-describedby="example5_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="ITEM NAME: activate to sort column ascending"
-                                            style="width: 243.859px;">ITEM NAME</th>
-                                        <th class="sorting_asc" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="CATEGORY: activate to sort column descending"
-                                            style="width: 172.203px;" aria-sort="ascending">CATEGORY</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="PRICE: activate to sort column ascending"
-                                            style="width: 103.359px;"> PRICE</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="SALES: activate to sort column ascending"
-                                            style="width: 105.953px;"> SALES</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="ITEM NAME: activate to sort column ascending"
-                                            style="width: 243.859px;">STATUS</th>
-                                        <th class="text-end sorting" tabindex="0" aria-controls="example5" rowspan="1"
-                                            colspan="1" aria-label="ACTION: activate to sort column ascending"
-                                            style="width: 146.297px;">ACTION</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody">
-                                </tbody>
-                            </table>
-                            <div class="dataTables_info" id="example5_info" role="status" aria-live="polite"> Showing
-                                <span class="fooditems"></span> of <span class="total"> </span> entries </div>
-                            <div class="dataTables_paginate paging_simple_numbers" id="example5_paginate"><a
-                                    class="paginate_button previous disabled" aria-controls="example5" data-dt-idx="0"
-                                    tabindex="0" id="example5_previous">Previous</a><span><a
-                                        class="paginate_button current" aria-controls="example5" data-dt-idx="1"
-                                        tabindex="0">1</a></span><a class="paginate_button next disabled"
-                                    aria-controls="example5" data-dt-idx="2" tabindex="0" id="example5_next">Next</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group mb-3">
+                <label class="font-w600">Price</label>
+                <input type="text" type="text" class="form-control solid" id="price" placeholder="price">
             </div>
-        </div>
+            <div class="form-group mb-3">
+                <label class="font-w600">Quamtity</label>
+                <input type="text" type="text" class="form-control solid" id="quantity" placeholder="quantity">
+            </div>
+            <div class="form-group mb-3">
+                <label class="font-w600">Unit</label>
+                <select id="unit" type="text" class="form-control solid" class="form-control" name="unit">
+                    <option id='kg'>kg</option>
+                    <option id='gm'>gm</option>
+                    <option id='liter'>liter</option>
+                    <option id='ml'>ml</option>
+                </select>
+            </div>
+            <button onclick="addCategory()">Save Purchase</button>
+        </form> -->
+        <table class="grid-container">
+            <tbody>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Spent (₹)</th>
+                    <th>Current Stock</th>
+                    <th>Unit</th>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="add()">Add purchase</button>
     </div>
-    <script src="index.js"></script>
+    <script src="category.js"></script>
 </body>
 
 </html>

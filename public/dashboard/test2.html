@@ -478,126 +478,123 @@
             ***********************************-->
         <div class="content-wrapper">
             <!-- row -->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div id="user-activity" class="card">
-                            <div class="card-header border-0 pb-0 d-sm-flex d-block">
-                                <div>
-                                    <h2 class="main-title mb-1">Earnings</h2>
-                                </div>
-                                <div class="card-action card-tabs mt-3 mt-sm-0">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" onclick="yearly()" data-toggle="tab" href="#user"
-                                                role="tab"> Yearly </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="" data-toggle="tab" href="#bounce" role="tab"> <select
-                                                    id="monthToDate" onclick="lalao()" class="nav-link"
-                                                    style="color: blue;" onchange="chang()" value="month">
-                                                    <option value="1">Janaury</option>
-                                                    <option value="2">February</option>
-                                                    <option value="3">March</option>
-                                                    <option value="4">April</option>
-                                                    <option value="5">May</option>
-                                                    <option value="6">June</option>
-                                                    <option value="7">July</option>
-                                                    <option value="8">August</option>
-                                                    <option value="9">September</option>
-                                                    <option value="10">Octomber</option>
-                                                    <option value="11">November</option>
-                                                    <option value="12">December</option>
-                                                </select> </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#session-duration" role="tab"
-                                                onclick="today()"> Today </a>
-                                        </li>
-                                    </ul>
+            <div class="row">
+                <div class="col-xl-6">
+                    <div id="user-activity" class="card">
+                        <div class="card-header border-0 pb-0 d-sm-flex d-block">
+                            <div>
+                                <h2 class="main-title mb-1">Earnings</h2>
+                            </div>
+                            <div class="card-action card-tabs mt-3 mt-sm-0">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" onclick="yearly()" data-toggle="tab" href="#user"
+                                            role="tab"> Yearly </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="" data-toggle="tab" href="#bounce" role="tab"> <select
+                                                id="monthToDate" onclick="lalao()" class="nav-link" style="color: blue;"
+                                                onchange="chang()" value="month">
+                                                <option value="1">Janaury</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">Octomber</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select> </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#session-duration" role="tab"
+                                            onclick="today()"> Today </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="user" role="tabpanel">
+                                    <div class="chartjs-size-monitor">
+                                        <div class="chartjs-size-monitor-expand">
+                                            <div class=""></div>
+                                        </div>
+                                        <div class="chartjs-size-monitor-shrink">
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="monthlyearning">
+                                        <canvas id="activity" class="chartjs chartjs-render-monitor" height="260"
+                                            style="display: block; width: 539px; height: 260px;" width="539"></canvas>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="user" role="tabpanel">
-                                        <div class="chartjs-size-monitor">
-                                            <div class="chartjs-size-monitor-expand">
-                                                <div class=""></div>
-                                            </div>
-                                            <div class="chartjs-size-monitor-shrink">
-                                                <div class=""></div>
-                                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="row" style="flex-wrap: nowrap;padding-bottom: 3em;padding-top: 2em;">
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 totalcustomers text-black"></span></h3>
+                                            <p class="mb-0">Total Menus</p>
                                         </div>
-                                        <div class="monthlyearning">
-                                            <canvas id="activity" class="chartjs chartjs-render-monitor" height="260"
-                                                style="display: block; width: 539px; height: 260px;"
-                                                width="539"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/1490/1490817.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 grossprofit text-black"></span></h3>
+                                            <p class="mb-0">Revenue</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
-                        <div class="row" style="flex-wrap: nowrap;padding-bottom: 3em;padding-top: 2em;">
-                            <div class="col-sm-6">
-                                <div class="widget-card-1 card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt=""
-                                                class="me-4" width="80">
-                                            <div class="media-body">
-                                                <h3 class="mb-sm-3 mb-2 text-black"><span
-                                                        class="counter ms-0 totalcustomers text-black"></span></h3>
-                                                <p class="mb-0">Total Menus</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="widget-card-1 card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/1490/1490817.png" alt=""
-                                                class="me-4" width="80">
-                                            <div class="media-body">
-                                                <h3 class="mb-sm-3 mb-2 text-black"><span
-                                                        class="counter ms-0 grossprofit text-black"></span></h3>
-                                                <p class="mb-0">Revenue</p>
-                                            </div>
+                    <div class="row" style="flex-wrap: nowrap;">
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/2738/2738730.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0  totalmenus text-black"></span></h3>
+                                            <p class="mb-0 ">Items Sold</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="flex-wrap: nowrap;">
-                            <div class="col-sm-6">
-                                <div class="widget-card-1 card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/2738/2738730.png" alt=""
-                                                class="me-4" width="80">
-                                            <div class="media-body">
-                                                <h3 class="mb-sm-3 mb-2 text-black"><span
-                                                        class="counter ms-0  totalmenus text-black"></span></h3>
-                                                <p class="mb-0 ">Items Sold</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="widget-card-1 card">
-                                    <div class="card-body">
-                                        <div class="media">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/3496/3496528.png" alt=""
-                                                class="me-4" width="80">
-                                            <div class="media-body">
-                                                <h3 class="mb-sm-3 mb-2 text-black"><span
-                                                        class="counter ms-0 tax text-black"></span></h3>
-                                                <p class="mb-0">Tax</p>
-                                            </div>
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/3496/3496528.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 tax text-black"></span></h3>
+                                            <p class="mb-0">Tax</p>
                                         </div>
                                     </div>
                                 </div>
