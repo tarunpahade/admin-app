@@ -156,9 +156,9 @@ name.innerHTML=y.item
   
 
 const status=document.createElement('td')
-status.innerHTML="<a  class='active btn' >  active </a>"
+status.innerHTML="<a  class='inactive btn' >  De-activate </a>"
 if(y.status==='inactive'){
-  status.innerHTML="<a class='inactive btn'> Re-activate </a>"
+  status.innerHTML="<a class='active btn'> Re-activate </a>"
   status.addEventListener('click',()=>{
   
   const baseUrl='/reActivate'

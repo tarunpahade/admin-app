@@ -124,7 +124,20 @@ app.get('/inventory/reciepe',(req,res)=>{
 
 
 
+const feedback=mongoose.Schema({ 
+  description:String,
+  name:String,
+  number:Number,
+  review:[{
+  name:String,
+  rating:String
+}],
+})
+var review = mongoose.model( 'rating',feedback, 'feedback');
+app.get('/review',(req,res)=>{
+  res.sendFile(__dirname+'/public/review/review.html')
 
+})
 
 app.post('/register',async (req,res)=>{
   const ff =req.body;
@@ -513,6 +526,37 @@ app.get('/whatsapp',()=>{
 app.get('/analytics',(req,res)=>{
   res.sendFile(__dirname + '/public/test2.html');
 })
+//day-report
+app.get('/day-report',(req,res)=>{
+  res.sendFile(__dirname+'/public/day-report/day-report.html')
+})
+
+const today=mongoose.Schema({ 
+  amount:String,
+  date:String,
+  time:String,
+  month:String,
+  balance:String
+})
+var dayreport = mongoose.model( 'report',today, 'report');
+app.post('/day-report',(req,res)=>{
+  const { pp }= req.body
+  console.log(pp);
+  const data=new dayreport({
+amount:pp.amount,
+time:pp.time,
+date:pp.today,
+month:pp.month,
+balance:pp.balance
+})
+
+ data.save(function (err, book) {
+  if (err) { console.error('fucked up code'+err);}
+else{console.log('succesfully upated');}
+  
+});
+
+})
 
   //customers
   app.get('/customers',(req,res)=>{
@@ -746,7 +790,7 @@ app.get('/categories',(req,res)=>{
   app.get('/logout',(req,res)=>{
     
     console.log(usersinfo);
-  registeredUser
+  //registeredUser
   })
 // app.listen('5000',()=>{
 //   console.log('server up and running');

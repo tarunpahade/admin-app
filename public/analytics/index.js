@@ -308,7 +308,7 @@ totalmonth.push(z)
                     data: foodid
                   },     
                   {
-                    laa: "Expense",
+                    label: "Expense",
                     data: totalAmt
             
                   }
