@@ -66,3 +66,6 @@ input{
 #generateReport{
     visibility: hidden;
 }
+.stockexp , .todaysSale{
+    display: none;
+}

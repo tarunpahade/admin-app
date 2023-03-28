@@ -17,7 +17,6 @@
     <div class="day-balance"></div>
     <button class="day-start">Start Day </button>
     <button class="day-close" id="day-close">Close Day</button>
-    <h1>Hii</h1>
     <div class="start overlay">
         <form id="day-start">
             <a class="close" href="#">&times;</a>
@@ -36,6 +35,59 @@
             <input type="submit" id="submit" value="Submit" class="btn btn-primary">
             <input type="submit" id="generateReport" value="Generate Report" class="btn btn-primary">
         </form>
+    </div>
+    <div class="todaysSale">
+        <h1>Today's Sales</h1>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table id="example5" class="display mb-4 dataTablesCard" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="w-space-no">Name</th>
+                            <th class="w-space-no">Amount</th>
+                            <th class="w-space-no">Quantity</th>
+                            <th class="w-space-no">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="totalsale"> Today's sale<div class="total"></div>
+            </div>
+            <div class="cash"></div>
+            <div class="card1"></div>
+            <div class="upi"></div>
+        </div>
+    </div>
+    <div class="stockexp">
+        <h1>Stock Expense</h1>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table id="example5" class="display mb-4 dataTablesCard" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="w-space-no">Name</th>
+                            <th class="w-space-no">Amount</th>
+                            <th class="w-space-no">quantity</th>
+                            <th class="w-space-no">unit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyexp">
+                    </tbody>
+                </table>
+            </div>
+            <div id="total-exp">
+                <div id="stock-exp"></div>
+            </div>
+        </div>
+    </div>
+    <div class="last-update">
+        <h1>Opening Cash</h1>
+        <div class="opn-amount"></div>
+        <div class="opn-date"></div>
+        <div class="opn-time"></div>
+        <div class="currentBalance"></div>
     </div>
 </body>
 <script src="day-report.js"></script>
