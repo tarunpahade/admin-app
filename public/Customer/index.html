@@ -185,6 +185,10 @@
                             </button>
                             <!-- Extra Nav -->
                             <div class="extra-nav">
+                                <div class="extra-cell text-start">
+                                    <!-- <span class="d-block fs-18">Filter Periode</span> -->
+                                    <input type="date" name="" onchange="handler(event)" id="">
+                                </div>
                                 <div class="extra-cell">
                                     <a href="javascript:void();" class="profile-box">
                                         <div class="header-info">
@@ -338,7 +342,7 @@
                                             fill="#000000" opacity="0.3"></path>
                                     </g>
                                 </svg> CRM</a></li>
-                        <!-- <li class="analyitcs nav-item">
+                        <li class="analyitcs nav-item">
                             <a href="../analytics" class="nav-link"> <svg xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                     viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
@@ -352,9 +356,28 @@
                                             fill="#000000"></path>
                                     </g>
                                 </svg>Analytics</a>
-                        </li> -->
-                        <!-- <li class="nav-item active">
-                            <a class="nav-link" href="../bill">
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"> <svg xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                                    viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                        <path
+                                            d="M12,22 C7.02943725,22 3,17.9705627 3,13 C3,8.02943725 7.02943725,4 12,4 C16.9705627,4 21,8.02943725 21,13 C21,17.9705627 16.9705627,22 12,22 Z"
+                                            fill="#000000" opacity="0.3"></path>
+                                        <path
+                                            d="M11.9630156,7.5 L12.0475062,7.5 C12.3043819,7.5 12.5194647,7.69464724 12.5450248,7.95024814 L13,12.5 L16.2480695,14.3560397 C16.403857,14.4450611 16.5,14.6107328 16.5,14.7901613 L16.5,15 C16.5,15.2109164 16.3290185,15.3818979 16.1181021,15.3818979 C16.0841582,15.3818979 16.0503659,15.3773725 16.0176181,15.3684413 L11.3986612,14.1087258 C11.1672824,14.0456225 11.0132986,13.8271186 11.0316926,13.5879956 L11.4644883,7.96165175 C11.4845267,7.70115317 11.7017474,7.5 11.9630156,7.5 Z"
+                                            fill="#000000"></path>
+                                    </g>
+                                </svg><select name="inventory" id="inventory" onchange="inventory()">
+                                    <option> inventory</option>
+                                    <option value="reciepe"> reciepe</option>
+                                    <option value="stock"> stock</option>
+                                </select></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../day-report">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -366,8 +389,8 @@
                                             d="M5.5,10 L9.5,10 C10.3284271,10 11,10.6715729 11,11.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,11.5 C4,10.6715729 4.67157288,10 5.5,10 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,12.5 C20,13.3284271 19.3284271,14 18.5,14 L14.5,14 C13.6715729,14 13,13.3284271 13,12.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z"
                                             fill="#000000" opacity="0.3"></path>
                                     </g>
-                                </svg> Generate Bill</a>
-                        </li> -->
+                                </svg> DSR</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Customer">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
