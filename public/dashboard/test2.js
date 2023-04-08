@@ -13,7 +13,18 @@ document.querySelector('.menu-btn').addEventListener('click', () => {
 })
 
 
+function inventory() {
+  const e = document.querySelector('#inventory')
+  var value = e.innerHTML;
+  var text = e.options[e.selectedIndex].text;
+  console.log(text);
+  if (text === 'stock') {
+    window.location = '../inventory/stock'
+  } else if (text === 'reciepe') {
+    window.location = '../inventory/reciepe'
 
+  }
+}
 
 
 

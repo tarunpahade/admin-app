@@ -80,7 +80,7 @@
         }
 
         .card {
-            height: 15%;
+            height: 80%;
         }
     </style>
 </head>
@@ -406,6 +406,78 @@
         <div class="container-fluid">
             <div class="row" style="display: flex;">
                 <div class="col-xl-6">
+                    <div class="row" style="flex-wrap: nowrap;padding-bottom: 3em;padding-top: 2em;">
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/2717/2717634.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 totalcustomers text-black">
+                                                    <h3 class="cashSales"> 31</h3>
+                                                </span></h3>
+                                            <p class="mb-0">Cash Sales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/10267/10267884.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 grossprofit text-black">
+                                                    <h3 class="cardSales"> 29756</h3>
+                                                </span></h3>
+                                            <p class="mb-0">Card </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="flex-wrap: nowrap;">
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/4108/4108841.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0  upiSales text-black">131</span></h3>
+                                            <p class="mb-0 ">upi sales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="widget-card-1 card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/857/857681.png" alt=""
+                                            class="me-4" width="80">
+                                        <div class="media-body">
+                                            <h3 class="mb-sm-3 mb-2 text-black"><span
+                                                    class="counter ms-0 avg text-black">
+                                                    <h3> 743.9</h3>
+                                                </span></h3>
+                                            <p class="mb-0">average ticket</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
                     <div class="card">
                         <div class="card-header border-0 pb-0 d-sm-flex d-block">
                             <div class="me-3">
@@ -417,45 +489,42 @@
                                 <option>Daily</option>
                             </select>
                         </div>
-                        <div class="card">
-                            <div class="card-body pt-2">
-                                <div class="table-responsive ">
-                                    <table class="table items-table">
-                                        <tbody id="top">
-                                            <tr>
-                                                <th class="my-0 text-black font-w500 fs-20">Items</th>
-                                                <th style="width:10%;" class="my-0 text-black font-w500 fs-20"> Sale
-                                                </th>
-                                                <th style="width:10%;" class="my-0 text-black font-w500 fs-20"> Price
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                        <div class="card-body pt-2">
+                            <div class="table-responsive ">
+                                <table class="table items-table">
+                                    <tbody id="top">
+                                        <tr>
+                                            <th class="my-0 text-black font-w500 fs-20">Items</th>
+                                            <th style="width:10%;" class="my-0 text-black font-w500 fs-20"> Sale </th>
+                                            <th style="width:10%;" class="my-0 text-black font-w500 fs-20"> Price </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card">
-                        <div class="card-header border-0 pb-0 d-sm-flex d-block">
-                            <div class="me-3">
-                                <h4 class="card-title mb-1">Chart Orders</h4>
-                            </div>
-                            <select class="form-control style-1 default-select  mt-3 mt-sm-0">
-                                <option>Weekly</option>
-                                <option>Monthly</option>
-                                <option>Daily</option>
-                            </select>
-                        </div>
-                        <div class="div">
-                            <canvas id="monthlyearnings" width="239" height="139"
-                                class="chartjs-render-monitor monthlyearning"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-xl-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-0 d-sm-flex d-block">
+                        <div class="me-3">
+                            <h4 class="card-title mb-1">Chart Orders</h4>
+                        </div>
+                        <select class="form-control style-1 default-select  mt-3 mt-sm-0">
+                            <option>Weekly</option>
+                            <option>Monthly</option>
+                            <option>Daily</option>
+                        </select>
+                    </div>
+                    <div class="div">
+                        <canvas id="monthlyearnings" width="239" height="139"
+                            class="chartjs-render-monitor monthlyearning"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
     </div>
     </div>

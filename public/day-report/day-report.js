@@ -1,21 +1,44 @@
 const submit = document.getElementById('submit')
 const dayStart = document.querySelector('.day-start')
-const dayCLOSE = document.querySelector('.day-close')
+
 const makeFormVisible = document.querySelector('.overlay')
 const report = document.querySelector('#generateReport')
-const totalsale = document.querySelector('.total')
+const totalsale = document.querySelector('.totalsale')
 const stockExp = document.querySelector('#stock-exp')
 const currentBalance = document.querySelector('.currentBalance')
 const todaySale = document.querySelector('.todaysSale')
 const stockdiv = document.querySelector('.stockexp')
-
+const lala = []
+const lalaexp = []
 //Finds Out Days
 const date = new Date
-const today = date.getDate().toString()
+const today = String(date.getDate()).padStart(2, '0');
 const month = date.getMonth()
 const arrayOfMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const currentMonth = arrayOfMonths[month]
 const year = date.getFullYear().toString()
+
+document.querySelector('.menu-btn').addEventListener('click', () => {
+
+  const side = document.querySelector('.haha')
+
+
+
+
+  side.classList.toggle('side')
+  side.classList.toggle('menu-sidebar')
+  side.classList.add('open')
+
+  // }
+})
+
+
+
+
+
+
+
+
 
 
 //sets up inputs
@@ -23,10 +46,8 @@ document.getElementById('datePicker').valueAsDate = new Date();
 const hours = date.getHours();
 
 const min = String(date.getMinutes()).padStart(2, '0');
-console.log(hours, min);
 
 document.getElementById('time').value = hours + ':' + min;
-console.log(new Date().getHours());
 
 
 document.querySelector('.close').addEventListener('click', () => {
@@ -41,12 +62,6 @@ dayStart.addEventListener('click', () => {
   makeFormVisible.style.visibility = "visible"
   submit.style.display = 'block'
 
-})
-dayCLOSE.addEventListener('click', () => {
-
-  makeFormVisible.style.visibility = "visible"
-  report.style.visibility = "visible"
-  submit.style.display = 'none'
 })
 
 // report.addEventListener('click', (event) => {
@@ -68,7 +83,7 @@ async function getinfo() {
 
 
   const data = await res.json()
-
+  lala.push(data)
   const exp = await fetch('/expense', {
       method: 'GET',
     }
@@ -77,7 +92,7 @@ async function getinfo() {
 
 
   const expense = await exp.json()
-
+  lalaexp.push(expense)
 
 
   const openingCash = await fetch('/dsr', {
@@ -90,21 +105,28 @@ async function getinfo() {
   const cashInHand = await openingCash.json()
 
   // current(cashInHand,'cash')
-  console.log(cashInHand);
   const lastUpdate = cashInHand[cashInHand.length - 1]
-  console.log(lastUpdate);
-  document.querySelector('.opn-amount').innerHTML = `Opening Balance ${lastUpdate.amount}`
-  document.querySelector('.opn-date').innerHTML = `Date ${lastUpdate.date}`
-  document.querySelector('.opn-time').innerHTML = `Time ${lastUpdate.time}`
+  document.querySelector('.opn-amount').innerHTML = lastUpdate.amount
+  document.querySelector('.opn-date').innerHTML = lastUpdate.date
+  document.querySelector('.opn-time').innerHTML = lastUpdate.time
 
 
   //creates sales chart
-
-  current(data, 'sales')
+  const filterdate = data.filter((y) => y.date === today)
+  console.log(filterdate);
+  const monthFilter = filterdate.filter((y) => y.month === currentMonth)
+  const year2 = monthFilter.filter((y) => y.year === year)
+  console.log(year2);
+  current(year2, 'sales')
   //creates expenses chart
-  current(expense, 'exp')
 
-  currentBalance.innerHTML = totalsale.innerHTML - stockExp.innerHTML
+  console.log(expense);
+  const filterdate1 = expense.filter((y) => y.date === today)
+  const monthFilter2 = filterdate1.filter((y) => y.month === currentMonth)
+  const year3 = monthFilter2.filter((y) => y.year === yearo)
+  current(year3, 'exp')
+  console.log(totalsale.innerHTML);
+
 
 }
 // getinfo()
@@ -112,14 +134,14 @@ async function getinfo() {
 //gets information from the form andsends data
 submit.addEventListener('click', (event) => {
   event.preventDefault()
-  console.log('you clicked submit');
+
   const amount = document.querySelector("#amount").value
-  console.log(amount);
+
 
   const hours = new Date().getHours();
   const date = new Date()
   const min = String(date.getMinutes()).padStart(2, '0');
-  console.log(hours, min);
+
   const today = date.getDate()
   const data = {
     amount: amount,
@@ -152,57 +174,30 @@ async function post(data, baseUrl) {
 
   ).then(response => {
     if (!response.ok) { // ***
-    } else {
-      console.log('sent');
-    } // ***
+    } else {} // ***
     // ...use `response.json`, `response.text`, etc. here
   });
-  //  location.reload()
 
 }
 
 
-function current(data, str) {
-  const customer = []
-
-
-
-  data.map((x) => {
-
-
-    if (x.year === year) {
-
-
-      if (x.month === currentMonth) {
-
-
-        if (x.date === today) {
-
-
-
-
-          customer.push(x)
-
-
-        }
-      }
-    }
-
-  })
+function current(customer, str) {
 
   if (str === 'sales') {
+
+
     if (customer.length > 0) {
       todaySale.style.display = 'block'
 
 
       const salesToday = []
-      const card = []
-      const cash = []
-      const upi = []
+
 
       const carddata = customer.filter((y) => y.paymentMethod === 'card')
       const cashdata = customer.filter((y) => y.paymentMethod === 'cash')
       const upidata = customer.filter((y) => y.paymentMethod === 'upi')
+      console.log(carddata, upidata, cashdata);
+
 
       function totalaMT(x) {
         const total = []
@@ -216,18 +211,19 @@ function current(data, str) {
             total.push(amount)
 
           })
+
           if (x.paymentMethod === 'cash') {
-            document.querySelector('.cash').innerHTML = 'Cash ' + total.reduce(function (acc, val) {
+            document.querySelector('.cash').innerHTML = total.reduce(function (acc, val) {
               return acc + val;
             }, 0)
           }
           if (x.paymentMethod === 'card') {
-            document.querySelector('.card1').innerHTML = 'Card ' + total.reduce(function (acc, val) {
+            document.querySelector('.card1').innerHTML = total.reduce(function (acc, val) {
               return acc + val;
             }, 0)
           }
           if (x.paymentMethod === 'upi') {
-            document.querySelector('.upi').innerHTML = 'Upi ' + total.reduce(function (acc, val) {
+            document.querySelector('.upi').innerHTML = total.reduce(function (acc, val) {
               return acc + val;
             }, 0)
           }
@@ -236,7 +232,7 @@ function current(data, str) {
       }
 
 
-
+      document.querySelector('#tbody').innerHTML = ''
       customer.map((x) => {
         if (x.paymentMethod === 'cash') {
           totalaMT(cashdata)
@@ -273,6 +269,7 @@ function current(data, str) {
 
           const tr = document.createElement('tr')
           tr.append(td5, td6, td, td3)
+
           document.querySelector('#tbody').append(tr)
         })
         const add = saleForToday.reduce(function (acc, val) {
@@ -286,13 +283,30 @@ function current(data, str) {
 
       //displays total sales
       totalsale.innerHTML = total
+      totalsale.classList.add('green')
+
+      const tr2 = document.createElement('tr')
+      const totaltd = document.createElement('td')
+      totaltd.innerText = 'total'
+      const amt = document.createElement('td')
+      amt.innerText = salesToday.reduce(function (acc, val) {
+        return acc + val;
+      }, 0)
+      amt.classList.add('green')
+      const dummy = document.createElement('td')
+      const dummy2 = document.createElement('td')
+
+      tr2.append(totaltd, dummy, dummy2, amt)
+
+      document.querySelector('#tbody').append(tr2)
+
     }
   } else if (str === 'exp') {
     if (customer.length > 0) {
       stockdiv.style.display = 'block'
 
       const expForToday = []
-      console.log(customer);
+      document.querySelector('#tbodyexp').innerHTML = ''
       customer.map((y) => {
         expForToday.push(y.price);
         const td5 = document.createElement('td')
@@ -315,12 +329,108 @@ function current(data, str) {
       const totalexp = expForToday.reduce(function (acc, val) {
         return acc + val;
       }, 0)
-      stockExp.innerHTML = totalexp
+
+
+      const tr2 = document.createElement('tr')
+      const totaltd = document.createElement('td')
+      totaltd.innerText = 'total'
+      const amt = document.createElement('td')
+      amt.innerText = totalexp
+      amt.classList.add('red')
+      const dummy = document.createElement('td')
+      const dummy2 = document.createElement('td')
+
+      tr2.append(totaltd, dummy, dummy2, amt)
+
+      document.querySelector('#tbodyexp').append(tr2)
     }
+
+  }
+  const expense = document.querySelector('.red')
+  console.log(expense);
+  if (expense == null) {
+    currentBalance.innerHTML = totalsale.innerHTML;
+    document.querySelector('.stockexp').style.visibility = 'hidden'
+  } else {
+    document.querySelector('.stockexp').style.visibility = 'visible'
+
+    currentBalance.innerHTML = totalsale.innerHTML - expense.innerHTML
+
+  }
+}
+
+function getMonthName(monthNumber) {
+  const date = new Date();
+  date.setMonth(monthNumber - 1);
+
+  return date.toLocaleString('en-US', {
+    month: 'long'
+  });
+}
+
+
+function handler(e) {
+
+  const filterdate = lala[0].filter((y) => y.date === e.target.value.slice(-2))
+
+  var month = getMonthName(e.target.value.slice(5, -3))
+  var yearo = e.target.value.slice(0, 4)
+
+  //filtr month
+  const monthFilter = filterdate.filter((y) => y.month === month)
+
+
+
+  const year = monthFilter.filter((y) => y.year === yearo)
+
+
+
+  hh = year
+  console.log(year);
+  if (year.length === 0) {
+    document.querySelector('#tbody').innerHTML = 'No Data Found'
+  } else if (year.length > 0) {
+    current(year, 'sales')
+
+  }
+  const filterdate2 = lalaexp[0].filter((y) => y.date === e.target.value.slice(-2))
+  const monthFilter2 = filterdate2.filter((y) => y.month === month)
+  const year2 = monthFilter2.filter((y) => y.year === yearo)
+
+  if (year2.length === 0) {
+    document.querySelector('#tbodyexp').innerHTML = 'No Data Found'
+  } else {
+    console.log(year2);
+    current(year2, 'exp')
 
   }
 
 
+}
 
-  //   return customer
+function lalao() {
+  document.querySelector('#monthToDate').classList.toggle('active')
+}
+
+function chang() {
+  const e = document.querySelector('#monthToDate')
+  var value = e.innerHTML;
+  var text = e.options[e.selectedIndex].text;
+  const search = lala[0].filter((u) => u.month === text)
+  if (search.length === 0) {
+    document.querySelector('#tbody').innerHTML = 'No Data Available'
+  } else {
+    current(search, 'sales')
+
+  }
+  const search2 = lalaexp[0].filter((u) => u.month === text)
+
+  if (search2.length === 0) {
+    document.querySelector('#tbodyexp').innerHTML = 'No Data Available'
+  } else {
+    current(search2, 'exp')
+
+  }
+
+
 }

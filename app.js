@@ -108,9 +108,13 @@ const register = new mongoose.Schema({
   phone: String,
   restraunt: String,
   position: String,
-  status: String
+  status: String,
+  monthlySalary: Number,
+  HiringDate: String
 })
 var registeredUser = mongoose.model('orderUser', register, 'users')
+
+
 
 app.get('/login', (req, res) => {
   res.sendFile(__dirname + '/public/registerLogin/login.html')
@@ -143,8 +147,8 @@ const feedback = mongoose.Schema({
   }],
 })
 var review = mongoose.model('rating', feedback, 'feedback');
-app.get('/review', (req, res) => {
-  res.sendFile(__dirname + '/public/review/review.html')
+app.get('/feedback', (req, res) => {
+  res.sendFile(__dirname + '/public/feedback/feedback.html')
 
 })
 
@@ -161,11 +165,13 @@ app.post('/register', async (req, res) => {
       const data = new registeredUser({
 
         username: ff.username,
-        email: ff.email,
         phone: ff.phone,
         password: ff.password,
         restraunt: ff.restraunt,
-        position: ff.position
+        position: ff.position,
+        HiringDate: new Date().toJSON().slice(0, 10).split('-').reverse().join('/'),
+        monthlySalary: ff.monthlySalary
+
       })
 
       data.save(function (err, book) {
@@ -255,6 +261,16 @@ app.get('/info', (req, res) => {
     res.send(user);
   })
 });
+//labour
+app.get('/labour', (req, res) => {
+  registeredUser.find({}, (err, user) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(user);
+  })
+});
+
 
 //sends data to dashboard
 app.get('/bill', (req, res) => {
@@ -273,6 +289,20 @@ app.get('/bill', (req, res) => {
   // }
 
 });
+
+app.get('/feedback-data', (req, res) => {
+
+  console.log('haha');
+  review.find({}, (err, user) => {
+
+    if (err) {
+      console.log(err);
+    }
+    res.send(user);
+  })
+
+});
+
 
 app.get('/', (req, res) => {
   res.redirect('/login')

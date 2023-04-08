@@ -1,64 +1,58 @@
+const waiterdiv = document.querySelector('#waiter')
+const managerdiv = document.querySelector('#manager')
+const chefdiv = document.querySelector('#chef')
+
+document.querySelector('.menu-btn').addEventListener('click', () => {
+
+  const side = document.querySelector('.haha')
 
 
-const waiterdiv=  document.querySelector('#waiter')
-const managerdiv=  document.querySelector('#manager')
-const chefdiv=  document.querySelector('#chef')
+
+  side.classList.toggle('side')
+  side.classList.toggle('menu-sidebar')
+  side.classList.add('open')
+})
 
 
-
-
-document.querySelector('.menu-btn').addEventListener('click',()=>{
-
-    const side=document.querySelector('.haha')
-    
-
-    
-    side.classList.toggle('side')
-    side.classList.toggle('menu-sidebar')
-    side.classList.add('open')
-    })
-
-
-    const baseUrl='/user'
+const baseUrl = '/user'
 
 async function getinfo() {
-  const res = await fetch(baseUrl,
-    {
-      method:'GET',
-      }
-
-    )
-  
-
-    const data=await res.json()
-
-    document.querySelector('#preloader').style.display='none'
-console.log(data);
-    return data
+  const res = await fetch(baseUrl, {
+      method: 'GET',
     }
-    getinfo().then((x)=>{
-    
 
-        const waiters=x.filter((c)=>c.position==='Waiter')
-        const chef=x.filter((c)=>c.position==='Chef')
-        const managers=x.filter((c)=>c.position==='Manager')
+  )
 
-        
-      
- 
-        waiters.forEach(e => {
-          const ul=document.createElement('tr')      
 
-//username
-const td=document.createElement('td')
-td.innerHTML=e.username
-//status
+  const data = await res.json()
 
-const td2=document.createElement('td')
-td2.innerHTML=e.status
-//actions
-const td3=document.createElement('td')
-td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+  document.querySelector('#preloader').style.display = 'none'
+  console.log(data);
+  return data
+}
+getinfo().then((x) => {
+
+
+  const waiters = x.filter((c) => c.position === 'Waiter')
+  const chef = x.filter((c) => c.position === 'Chef')
+  const managers = x.filter((c) => c.position === 'Manager')
+
+
+
+
+  waiters.forEach(e => {
+    const ul = document.createElement('tr')
+
+    //username
+    const td = document.createElement('td')
+    td.innerHTML = e.username
+    //monthlySalary
+
+    const td2 = document.createElement('td')
+    td2.innerHTML = e.monthlySalary
+    //actions
+    const td3 = document.createElement('td')
+    td3.innerHTML = `<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <rect x="0" y="0" width="24" height="24"></rect>
     <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
@@ -66,29 +60,29 @@ td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2
 </g>
 </svg></a>`
 
-ul.append(td,td2,td3)
-waiterdiv.append(ul);
-        });
-    
+    ul.append(td, td2, td3)
+    waiterdiv.append(ul);
+  });
 
-     
-      
 
-        
-        chef.forEach(e => {
 
-          const tr1=document.createElement('tr')  
 
-//username
-const td=document.createElement('td')
-td.innerHTML=e.username
-//status
 
-const td2=document.createElement('td')
-td2.innerHTML=e.status
-//actions
-const td3=document.createElement('td')
-td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+
+  chef.forEach(e => {
+
+    const tr1 = document.createElement('tr')
+
+    //username
+    const td = document.createElement('td')
+    td.innerHTML = e.username
+    //monthlySalary
+
+    const td2 = document.createElement('td')
+    td2.innerHTML = e.monthlySalary
+    //actions
+    const td3 = document.createElement('td')
+    td3.innerHTML = `<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <rect x="0" y="0" width="24" height="24"></rect>
     <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
@@ -96,26 +90,26 @@ td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2
 </g>
 </svg></a>`
 
-tr1.append(td,td2,td3)
-chefdiv.append(tr1);
-        });
-      
-      
-        console.log(chefdiv);
-      
-        managers.forEach(e => {
+    tr1.append(td, td2, td3)
+    chefdiv.append(tr1);
+  });
 
-          const tr=document.createElement('tr')
-//username
-const td=document.createElement('td')
-td.innerHTML=e.username
-//status
 
-const td2=document.createElement('td')
-td2.innerHTML=e.status
-//actions
-const td3=document.createElement('td')
-td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+  console.log(chefdiv);
+
+  managers.forEach(e => {
+
+    const tr = document.createElement('tr')
+    //username
+    const td = document.createElement('td')
+    td.innerHTML = e.username
+    //monthlySalary
+
+    const td2 = document.createElement('td')
+    td2.innerHTML = e.monthlySalary
+    //actions
+    const td3 = document.createElement('td')
+    td3.innerHTML = `<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
     <rect x="0" y="0" width="24" height="24"></rect>
     <path d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z" fill="#000000" fill-rule="nonzero"></path>
@@ -123,14 +117,13 @@ td3.innerHTML=`<a class="btn btn-danger light">  <svg xmlns="http://www.w3.org/2
 </g>
 </svg></a>`
 
-tr.append(td,td2,td3)
-managerdiv.append(tr);        
-});
-        
-        console.log(managerdiv);
-     
-     //add event listners to make div visible
-       
+    tr.append(td, td2, td3)
+    managerdiv.append(tr);
+  });
+
+  console.log(managerdiv);
+
+  //add event listners to make div visible
 
 
 
@@ -138,4 +131,5 @@ managerdiv.append(tr);
 
 
 
-    })
+
+})
