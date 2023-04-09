@@ -19,7 +19,7 @@ async function getinfo() {
             <div class="media mb-4 d-flex align-items-center">
                 
                 <div class="media-body">
-                    <h5 class="mt-0 mb-3">${x.review[0].name}</h5>
+                    <h5 class="mt-0 mb-3">${x.review[0].name || 'customer'}</h5>
                     <small class="mb-0">BURGER</small>
                 </div>
             </div>
